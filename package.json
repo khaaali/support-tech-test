@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "working": "mocha ./test/workingSauce.js",
-    "broken": "mocha ./test/brokenSauce.js"
+    "broken": "mocha ./test/brokenSauce.js",
+    "bonus": "mocha ./test/bonus.js"
   },
   "repository": {
     "type": "git",
