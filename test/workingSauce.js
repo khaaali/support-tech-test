@@ -23,7 +23,8 @@ const ONDEMAND_URL = `https://${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}@ondemand.eu-
 * See this page for instructions: https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
 * 
 * Bonus: Set the status of the test so it shows as "passed" instead of "complete".
-* We've included the node-saucelabs package already. For more info see:
+* Use annotations https://docs.saucelabs.com/basics/test-config-annotation/test-annotation/#selenium-javascript-executor
+* Or use the already imported node-saucelabs package. For more info see:
 * https://github.com/saucelabs/node-saucelabs
 */
 
@@ -33,21 +34,23 @@ describe('Working Sauce', function () {
                     .usingServer(ONDEMAND_URL).build();
 
 
-    /**
-     * Goes to Sauce Lab's guinea-pig page and verifies the title
-     */
+        /**
+         * Goes to Sauce Lab's guinea-pig page and verifies the title
+         */
 
-    await driver.get("https://saucelabs.com/test/guinea-pig");
-    await assert.strictEqual("I am a page title - Sauce Labs", await driver.getTitle());
+        await driver.get("https://saucelabs.com/test/guinea-pig");
+        await assert.strictEqual("I am a page title - Sauce Labs", await driver.getTitle());
 
-    // Task I
-
-
-    // Task II
+        // Task I
 
 
-    // Task III
+        // Task II
 
-    await driver.quit();
+
+        // Task III
+
+        // Bonus
+        
+        await driver.quit();
     });
 });
