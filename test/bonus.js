@@ -20,8 +20,9 @@ describe('Bonus', function () {
         // this test works in eu-central-1 or us-west-1, 
         // ignore the popup in eu-central-1
         let driver = await new Builder()
-        .withCapabilities(utils.oddEvenCaps)
-        .usingServer(ONDEMAND_URL).build();
+            .withCapabilities(utils.oddEvenCaps)
+            .usingServer(ONDEMAND_URL)
+            .build();
 
         await driver.get("https://www.google.com/search?q=random+number");
         let rand_num = await driver.findElement(By.className('gws-csf-randomnumber__result')).getText();
@@ -35,9 +36,7 @@ describe('Bonus', function () {
         await driver.quit();
     });
 
-
-
-
+    
     it('exception handling', async function () {
         /* Handle any exceptions that occur with a meaningful 
         message & the original error. Feel free to handle the 
@@ -48,8 +47,10 @@ describe('Bonus', function () {
         We want it to gracefully stop and to mark it as a failure in 
         the saucelabs.com UI.
         */ 
-        let driver = await new Builder().withCapabilities(utils.exceptionCaps)
-        .usingServer(ONDEMAND_URL).build();
+        let driver = await new Builder()
+            .withCapabilities(utils.exceptionCaps)
+            .usingServer(ONDEMAND_URL)
+            .build();
 
         // One of these elements is NOT present or reachable
         // mark the test as a failure and output the original error
