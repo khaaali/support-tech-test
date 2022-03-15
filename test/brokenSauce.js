@@ -14,8 +14,10 @@ const ONDEMAND_URL = `https://${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}@ondemand.eu-
 * Your job is to figure out why the test failed and make the changes necessary to make the test pass.
 *
 * Bonus: Once you get the test working, update the code so that when the test runs, it 
-* can reach the Sauce Labs homepage 
-* hover over 'Resources' and then clicks the 'Documentation' link
+* can reach the Sauce Labs Documentation.
+* Ideally you'll hover over the 'Resources' element and then click the 'Documentation' link, 
+* but the goal is to reach the docs page.
+* See the W3C Actions API https://appium.io/docs/en/commands/interactions/actions/
 */
 
 describe('Broken Sauce', function () {
