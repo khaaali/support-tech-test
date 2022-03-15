@@ -7,7 +7,9 @@
     "test": "mocha",
     "working": "mocha ./test/workingSauce.js",
     "broken": "mocha ./test/brokenSauce.js",
-    "bonus": "mocha ./test/bonus.js"
+    "bonus": "mocha ./test/bonus.js",
+    "oddEven": "mocha ./test/bonus.js -g 'odd even'",
+    "handling": "mocha ./test/bonus.js -g 'exception handling'"  
   },
   "repository": {
     "type": "git",
