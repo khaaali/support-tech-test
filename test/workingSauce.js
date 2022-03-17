@@ -1,4 +1,4 @@
-const {Builder, By, Key, until} = require('selenium-webdriver')
+const { Builder, By, Key, until } = require('selenium-webdriver')
 const SauceLabs = require('saucelabs').default;
 const assert = require('assert');
 const utils = require('./utils')
@@ -31,7 +31,7 @@ const ONDEMAND_URL = `https://${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}@ondemand.eu-
 describe('Working Sauce', function () {
     it('should go to Google and click Sauce', async function () {
         let driver = await new Builder().withCapabilities(utils.workingCapabilities)
-                    .usingServer(ONDEMAND_URL).build();
+            .usingServer(ONDEMAND_URL).build();
 
 
         /**
@@ -41,16 +41,32 @@ describe('Working Sauce', function () {
         await driver.get("https://saucelabs.com/test/guinea-pig");
         await assert.strictEqual("I am a page title - Sauce Labs", await driver.getTitle());
 
-        // Task I
-
+        // Task I // not happy with the way "id" is defined
+        // let link = await driver.findElement(By.id('i am a link'));
+        // await link.click();
 
         // Task II
-
+        let updateTextBox = await driver.findElement(By.id('i_am_a_textbox'));
+        await updateTextBox.clear()
+        await updateTextBox.sendKeys('Selenium');
 
         // Task III
+        let email = await driver.findElement(By.id('fbemail'));
+        let comments = await driver.findElement(By.id('comments'));
+        let sendButton = await driver.findElement(By.id('submit'));
+        await email.sendKeys('support@saucelabs.com');
+        await comments.sendKeys('this is a comment');
+        await sendButton.click();
+
+        // TASK IV
+        // added property to utils.js
 
         // Bonus
+        // added property to utils.js
 
         await driver.quit();
     });
 });
+
+
+

@@ -1,4 +1,4 @@
-const {Builder, By, Key, until} = require('selenium-webdriver')
+const { Builder, By, Key, until } = require('selenium-webdriver')
 const utils = require('./utils')
 
 const SAUCE_USERNAME = process.env.SAUCE_USERNAME;
@@ -25,18 +25,30 @@ describe('Bonus', function () {
             .build();
 
         await driver.get("https://www.google.com/search?q=random+number");
+        let agreeButton = await driver.findElement(By.id('L2AGLb'));
+        await agreeButton.click();
         let rand_num = await driver.findElement(By.className('gws-csf-randomnumber__result')).getText();
         console.log(rand_num);
         await driver.executeScript(`sauce:context=the number is ${rand_num}`);
+
+        if (rand_num % 2 == 0) {
+            console.log("The number is even.");
+            driver.executeScript("sauce:job-result=passed");
+        }
+
+        else {
+            console.log("The number is odd.");
+            driver.executeScript("sauce:job-result=failed");
+        }
         // Now set the test to Passing or Failing 
         // If its odd, fail the test. 
         // If it is even pass the test
-        
+
 
         await driver.quit();
     });
 
-    
+
     it('exception handling', async function () {
         /* Handle any exceptions that occur with a meaningful 
         message & the original error. Feel free to handle the 
@@ -46,7 +58,7 @@ describe('Bonus', function () {
         Currently the test is abandoned after an error and idles out. 
         We want it to gracefully stop and to mark it as a failure in 
         the saucelabs.com UI.
-        */ 
+        */
         let driver = await new Builder()
             .withCapabilities(utils.exceptionCaps)
             .usingServer(ONDEMAND_URL)
@@ -56,11 +68,20 @@ describe('Bonus', function () {
         // mark the test as a failure and output the original error
         // JavaScript HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
         await driver.get("https://webglsamples.org/blob/blob.html");
-        await driver.findElement(By.id('setSetting3')).click();
-        await driver.findElement(By.id('setSetting8')).click();
-        await driver.findElement(By.id('setSetting1000')).click();
-        await driver.findElement(By.id('setSetting2')).click();
-        await driver.findElement(By.id('setSetting8')).click();  
+
+        try {
+            await driver.findElement(By.id('setSetting3')).click();
+            await driver.findElement(By.id('setSetting8')).click();
+            await driver.findElement(By.id('setSetting1000')).click();
+            await driver.findElement(By.id('setSetting2')).click();
+            await driver.findElement(By.id('setSetting8')).click();
+        }
+        catch (e) {
+            if (e.name === 'NoSuchElementError')
+                console.log('Element not found');
+        }
+
+
         await driver.quit();
     });
 });

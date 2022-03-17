@@ -4,6 +4,7 @@ const brokenCapabilities = {
     'browserVersion': 'latest',
     'sauce:options': {
         'name': 'Broken Google Search'
+
     }
 };
 
@@ -12,7 +13,9 @@ const workingCapabilities = {
     'platformName': 'macOS 11',
     'browserVersion': 'latest',
     'sauce:options': {
-        'name': 'Guinea-Pig Sauce'
+        'name': 'Guinea-Pig Sauce',
+        'passed': true,
+        'tags': ["workingSauce"],
     }
 };
 
@@ -30,7 +33,8 @@ const exceptionCaps = {
     'platformName': 'windows 10',
     'browserVersion': 'latest',
     'sauce:options': {
-        'name': 'bonus: exception handling'
+        'name': 'bonus: exception handling',
+        'passed': false,
     }
 }
 
